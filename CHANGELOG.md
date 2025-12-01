@@ -5,6 +5,20 @@ All notable changes to the Attendance Counter Web App will be documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-12-02
+
+### Changed
+- **Mobile Performance**: Eliminated 300ms tap delay on mobile devices
+- Replaced click events with touchstart events on touch-enabled devices
+- Added `touch-action: manipulation` CSS property to all interactive buttons
+- Added `-webkit-tap-highlight-color: transparent` to remove tap highlights
+- Automatic device detection to use appropriate event handlers (touchstart for mobile, click for desktop)
+
+### Technical
+- Implemented touch device detection using `'ontouchstart' in window`
+- Added passive: false to touch event listeners to allow preventDefault
+- Optimized event handling for both mobile and desktop platforms
+
 ## [1.1.0] - 2025-12-01
 
 ### Changed
