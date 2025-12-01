@@ -16,6 +16,7 @@ const counterGroup = document.getElementById('counterGroup');
 const btnIncrement = document.getElementById('btnIncrement');
 const btnDecrement = document.getElementById('btnDecrement');
 const btnCopy = document.getElementById('btnCopy');
+const btnReset = document.getElementById('btnReset');
 const summaryList = document.getElementById('summaryList');
 const summaryTotal = document.getElementById('summaryTotal');
 const toast = document.getElementById('toast');
@@ -157,10 +158,32 @@ function changeGroup(group) {
     saveToLocalStorage();
 }
 
+// Reset all counts
+function resetAllCounts() {
+    if (confirm('Are you sure you want to reset all counts to zero?')) {
+        Object.keys(state.counts).forEach(key => {
+            state.counts[key] = 0;
+        });
+        updateDisplay();
+        renderSummary();
+        saveToLocalStorage();
+    }
+}
+
+// Format date as "D MMMM YYYY" (e.g., "2 December 2025")
+function getFormattedDate() {
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'long' });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+}
+
 // Copy to clipboard
 async function copyToClipboard() {
     let total = 0;
-    let text = 'Attendance Count:\n\n';
+    const dateHeader = getFormattedDate();
+    let text = `${dateHeader}\n\nAttendance Count:\n\n`;
 
     Object.entries(state.counts).forEach(([group, count]) => {
         total += count;
@@ -223,6 +246,11 @@ function attachEventListeners() {
             copyToClipboard();
         }, { passive: false });
 
+        btnReset.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevent click event from firing
+            resetAllCounts();
+        }, { passive: false });
+
         ageButtons.forEach(btn => {
             btn.addEventListener('touchstart', (e) => {
                 e.preventDefault(); // Prevent click event from firing
@@ -234,6 +262,7 @@ function attachEventListeners() {
         btnIncrement.addEventListener('click', increment);
         btnDecrement.addEventListener('click', decrement);
         btnCopy.addEventListener('click', copyToClipboard);
+        btnReset.addEventListener('click', resetAllCounts);
 
         ageButtons.forEach(btn => {
             btn.addEventListener('click', () => {

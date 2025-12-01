@@ -320,12 +320,17 @@ body {
     color: var(--text-primary);
 }
 
-.btn-copy {
+.summary-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.btn-copy,
+.btn-reset {
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
     padding: 0.625rem 1rem;
-    background: var(--accent-gradient);
     border: none;
     border-radius: var(--radius-md);
     color: var(--text-primary);
@@ -339,12 +344,30 @@ body {
     /* Eliminates delay on mobile */
 }
 
+.btn-copy {
+    background: var(--accent-gradient);
+}
+
+.btn-reset {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: var(--danger);
+}
+
 .btn-copy:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md), var(--shadow-glow);
 }
 
-.btn-copy:active {
+.btn-reset:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: var(--danger);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-copy:active,
+.btn-reset:active {
     transform: translateY(0);
 }
 

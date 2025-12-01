@@ -62,14 +62,25 @@
         <div class="summary">
             <div class="summary-header">
                 <h2>Summary</h2>
-                <button class="btn-copy" id="btnCopy">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                    </svg>
-                    Copy
-                </button>
+                <div class="summary-actions">
+                    <button class="btn-reset" id="btnReset" aria-label="Reset all counts">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                        </svg>
+                        Reset
+                    </button>
+                    <button class="btn-copy" id="btnCopy" aria-label="Copy to clipboard">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        Copy
+                    </button>
+                </div>
             </div>
             <div class="summary-list" id="summaryList">
                 <!-- Summary items will be populated by JavaScript -->
@@ -78,7 +89,7 @@
         </div>
 
         <!-- Version Display -->
-        <div class="version">v1.2.0</div>
+        <div class="version">v1.3.0</div>
 
         <!-- Toast Notification -->
         <div class="toast" id="toast">
