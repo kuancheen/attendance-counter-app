@@ -124,6 +124,8 @@ body {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: inherit;
+    touch-action: manipulation;
+    /* Eliminates delay on mobile */
 }
 
 .age-btn:hover {
@@ -232,6 +234,10 @@ body {
     box-shadow: var(--shadow-md);
     position: relative;
     overflow: hidden;
+    touch-action: manipulation;
+    /* Eliminates delay on mobile */
+    -webkit-tap-highlight-color: transparent;
+    /* Remove tap highlight */
 }
 
 .btn-increment {
@@ -329,6 +335,8 @@ body {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: inherit;
     box-shadow: var(--shadow-sm);
+    touch-action: manipulation;
+    /* Eliminates delay on mobile */
 }
 
 .btn-copy:hover {

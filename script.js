@@ -202,17 +202,47 @@ function showToast() {
 
 // Attach event listeners
 function attachEventListeners() {
-    btnIncrement.addEventListener('click', increment);
-    btnDecrement.addEventListener('click', decrement);
-    btnCopy.addEventListener('click', copyToClipboard);
+    // Use touchstart for mobile, click for desktop
+    // This eliminates the 300ms delay on mobile devices
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    ageButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            changeGroup(btn.dataset.group);
+    if (isTouchDevice) {
+        // Mobile: use touchstart for instant response
+        btnIncrement.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevent click event from firing
+            increment();
+        }, { passive: false });
+
+        btnDecrement.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevent click event from firing
+            decrement();
+        }, { passive: false });
+
+        btnCopy.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevent click event from firing
+            copyToClipboard();
+        }, { passive: false });
+
+        ageButtons.forEach(btn => {
+            btn.addEventListener('touchstart', (e) => {
+                e.preventDefault(); // Prevent click event from firing
+                changeGroup(btn.dataset.group);
+            }, { passive: false });
         });
-    });
+    } else {
+        // Desktop: use click events
+        btnIncrement.addEventListener('click', increment);
+        btnDecrement.addEventListener('click', decrement);
+        btnCopy.addEventListener('click', copyToClipboard);
 
-    // Keyboard shortcuts
+        ageButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                changeGroup(btn.dataset.group);
+            });
+        });
+    }
+
+    // Keyboard shortcuts (desktop only)
     document.addEventListener('keydown', (e) => {
         if (e.key === '+' || e.key === '=') {
             increment();
@@ -223,16 +253,6 @@ function attachEventListeners() {
             copyToClipboard();
         }
     });
-
-    // Prevent double-tap zoom on buttons
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', (e) => {
-        const now = Date.now();
-        if (now - lastTouchEnd <= 300) {
-            e.preventDefault();
-        }
-        lastTouchEnd = now;
-    }, false);
 }
 
 // Initialize on DOM load
