@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Attendance Counter Web App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">Attendance Counter</h1>
+            <p class="subtitle">Track attendance by age group</p>
+        </header>
+
+        <!-- Age Group Selector -->
+        <div class="age-group-selector">
+            <div class="selector-label">Age Group</div>
+            <div class="selector-buttons">
+                <button class="age-btn active" data-group="Kids">Kids</button>
+                <button class="age-btn" data-group="Teens">Teens</button>
+                <button class="age-btn" data-group="Campus">Campus</button>
+                <button class="age-btn" data-group="YWAs">YWAs</button>
+                <button class="age-btn" data-group="Family">Family</button>
+            </div>
+        </div>
+
+        <!-- Counter Display -->
+        <div class="counter-display">
+            <div class="counter-label">Current Count</div>
+            <div class="counter-value" id="counterValue">0</div>
+            <div class="counter-group" id="counterGroup">Kids</div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="controls">
+            <button class="btn-decrement" id="btnDecrement" aria-label="Decrease count">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+            <button class="btn-increment" id="btnIncrement" aria-label="Increase count">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary">
+            <div class="summary-header">
+                <h2>Summary</h2>
+                <button class="btn-copy" id="btnCopy">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copy
+                </button>
+            </div>
+            <div class="summary-list" id="summaryList">
+                <!-- Summary items will be populated by JavaScript -->
+            </div>
+            <div class="summary-total" id="summaryTotal">Total: 0</div>
+        </div>
+
+        <!-- Version Display -->
+        <div class="version">v1.0.0</div>
+
+        <!-- Toast Notification -->
+        <div class="toast" id="toast">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Copied to clipboard!</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
