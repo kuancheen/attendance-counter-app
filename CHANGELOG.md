@@ -5,6 +5,21 @@ All notable changes to the Attendance Counter Web App will be documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-12-01
+
+### Changed
+- **Performance**: Significantly improved button responsiveness for rapid clicks
+- Implemented debounced localStorage saves (100ms delay) to prevent blocking during rapid clicks
+- Optimized UI updates using `requestAnimationFrame` for smoother performance
+- Reduced pulse animation duration from 0.3s to 0.15s (50% faster)
+- Made animations non-blocking by forcing reflow on each click
+- Reduced scale effect from 1.1x to 1.08x for subtler visual feedback
+
+### Technical
+- Refactored increment/decrement functions to use debouncing pattern
+- Added `debouncedSave()` function to batch localStorage writes
+- Improved animation restart mechanism for better responsiveness
+
 ## [1.0.0] - 2025-12-01
 
 ### Added
