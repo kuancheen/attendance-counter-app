@@ -27,7 +27,7 @@ function init() {
     updateDisplay();
     renderSummary();
     attachEventListeners();
-    
+
     // Lock orientation to portrait (best effort)
     if (screen.orientation && screen.orientation.lock) {
         screen.orientation.lock('portrait').catch(() => {
@@ -64,7 +64,7 @@ function saveToLocalStorage() {
 function updateDisplay() {
     counterValue.textContent = state.counts[state.currentGroup];
     counterGroup.textContent = state.currentGroup;
-    
+
     // Update active age button
     ageButtons.forEach(btn => {
         if (btn.dataset.group === state.currentGroup) {
@@ -79,10 +79,10 @@ function updateDisplay() {
 function renderSummary() {
     summaryList.innerHTML = '';
     let total = 0;
-    
+
     Object.entries(state.counts).forEach(([group, count]) => {
         total += count;
-        
+
         const item = document.createElement('div');
         item.className = 'summary-item';
         item.innerHTML = `
@@ -91,29 +91,62 @@ function renderSummary() {
         `;
         summaryList.appendChild(item);
     });
-    
+
     summaryTotal.textContent = `Total: ${total}`;
+}
+
+// Debounce timer for localStorage saves
+let saveTimer = null;
+
+// Debounced save to localStorage
+function debouncedSave() {
+    if (saveTimer) {
+        clearTimeout(saveTimer);
+    }
+    saveTimer = setTimeout(() => {
+        saveToLocalStorage();
+    }, 100); // Save after 100ms of no activity
 }
 
 // Increment counter
 function increment() {
     state.counts[state.currentGroup]++;
+
+    // Trigger pulse animation (non-blocking)
+    counterValue.classList.remove('pulse');
+    // Force reflow to restart animation
+    void counterValue.offsetWidth;
     counterValue.classList.add('pulse');
-    setTimeout(() => counterValue.classList.remove('pulse'), 300);
-    updateDisplay();
-    renderSummary();
-    saveToLocalStorage();
+
+    // Update display immediately
+    requestAnimationFrame(() => {
+        updateDisplay();
+        renderSummary();
+    });
+
+    // Debounce save to avoid blocking on rapid clicks
+    debouncedSave();
 }
 
 // Decrement counter
 function decrement() {
     if (state.counts[state.currentGroup] > 0) {
         state.counts[state.currentGroup]--;
+
+        // Trigger pulse animation (non-blocking)
+        counterValue.classList.remove('pulse');
+        // Force reflow to restart animation
+        void counterValue.offsetWidth;
         counterValue.classList.add('pulse');
-        setTimeout(() => counterValue.classList.remove('pulse'), 300);
-        updateDisplay();
-        renderSummary();
-        saveToLocalStorage();
+
+        // Update display immediately
+        requestAnimationFrame(() => {
+            updateDisplay();
+            renderSummary();
+        });
+
+        // Debounce save to avoid blocking on rapid clicks
+        debouncedSave();
     }
 }
 
@@ -128,14 +161,14 @@ function changeGroup(group) {
 async function copyToClipboard() {
     let total = 0;
     let text = 'Attendance Count:\n\n';
-    
+
     Object.entries(state.counts).forEach(([group, count]) => {
         total += count;
         text += `${group}: ${count}\n`;
     });
-    
+
     text += `\nTotal: ${total}`;
-    
+
     try {
         // Try modern clipboard API first
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -151,7 +184,7 @@ async function copyToClipboard() {
             document.execCommand('copy');
             document.body.removeChild(textarea);
         }
-        
+
         showToast();
     } catch (err) {
         console.error('Failed to copy:', err);
@@ -172,13 +205,13 @@ function attachEventListeners() {
     btnIncrement.addEventListener('click', increment);
     btnDecrement.addEventListener('click', decrement);
     btnCopy.addEventListener('click', copyToClipboard);
-    
+
     ageButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             changeGroup(btn.dataset.group);
         });
     });
-    
+
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
         if (e.key === '+' || e.key === '=') {
@@ -190,7 +223,7 @@ function attachEventListeners() {
             copyToClipboard();
         }
     });
-    
+
     // Prevent double-tap zoom on buttons
     let lastTouchEnd = 0;
     document.addEventListener('touchend', (e) => {

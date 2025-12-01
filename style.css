@@ -189,7 +189,7 @@ body {
 }
 
 .counter-value.pulse {
-    animation: pulse 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: pulse 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes pulse {
@@ -200,7 +200,7 @@ body {
     }
 
     50% {
-        transform: scale(1.1);
+        transform: scale(1.08);
     }
 }
 
