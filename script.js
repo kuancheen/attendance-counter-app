@@ -21,6 +21,12 @@ const summaryList = document.getElementById('summaryList');
 const summaryTotal = document.getElementById('summaryTotal');
 const toast = document.getElementById('toast');
 const ageButtons = document.querySelectorAll('.age-btn');
+const globalCountDisplay = document.getElementById('globalCount');
+
+// Global Counter Config
+const GLOBAL_COUNTER_API = 'https://api.counterapi.dev/v1';
+const NAMESPACE = 'attendance-counter-app';
+const KEY = 'global-people-counted';
 
 // Initialize app
 function init() {
@@ -28,6 +34,7 @@ function init() {
     updateDisplay();
     renderSummary();
     attachEventListeners();
+    fetchGlobalCount(); // Fetch initial global count
 
     // Lock orientation to portrait (best effort)
     if (screen.orientation && screen.orientation.lock) {
@@ -36,6 +43,46 @@ function init() {
             console.log('Orientation lock not supported');
         });
     }
+}
+
+// Fetch Global Count
+async function fetchGlobalCount() {
+    try {
+        const response = await fetch(`${GLOBAL_COUNTER_API}/${NAMESPACE}/${KEY}/`);
+        const data = await response.json();
+        if (data && data.count !== undefined) {
+            updateGlobalCountDisplay(data.count);
+        }
+    } catch (error) {
+        console.error('Error fetching global count:', error);
+        globalCountDisplay.textContent = 'Unavailable';
+    }
+}
+
+// Increment Global Count (Fire and forget)
+function incrementGlobalCount() {
+    fetch(`${GLOBAL_COUNTER_API}/${NAMESPACE}/${KEY}/up`)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.count !== undefined) {
+                updateGlobalCountDisplay(data.count);
+            }
+        })
+        .catch(error => console.error('Error incrementing global count:', error));
+}
+
+// Update Global Count Display with animation
+function updateGlobalCountDisplay(count) {
+    const formattedCount = new Intl.NumberFormat().format(count);
+    globalCountDisplay.textContent = formattedCount;
+
+    // Subtle pulse animation
+    globalCountDisplay.style.transform = 'scale(1.1)';
+    globalCountDisplay.style.color = 'var(--accent-secondary)';
+    setTimeout(() => {
+        globalCountDisplay.style.transform = 'scale(1)';
+        globalCountDisplay.style.color = 'var(--primary)';
+    }, 200);
 }
 
 // Load data from localStorage
@@ -127,6 +174,9 @@ function increment() {
 
     // Debounce save to avoid blocking on rapid clicks
     debouncedSave();
+
+    // Increment global count (background)
+    incrementGlobalCount();
 }
 
 // Decrement counter

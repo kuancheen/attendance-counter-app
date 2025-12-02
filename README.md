@@ -3,7 +3,7 @@
 A beautiful, mobile-first web application for tracking attendance across different age groups.
 
 [![Live Demo](https://img.shields.io/badge/demo-live-success)](https://kuancheen.github.io/attendance-counter-app/)
-[![Version](https://img.shields.io/badge/version-1.3.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.4.0-blue)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 ## 🚀 Live Demo
@@ -19,6 +19,7 @@ A beautiful, mobile-first web application for tracking attendance across differe
 - **Summary View**: Real-time display of all counts with total
 - **Reset Functionality**: One-click reset of all counts (with confirmation)
 - **Clipboard Export**: Copy attendance data with formatted date header
+- **Global Tracking**: Real-time global usage counter and visitor badge
 - **Mobile-Optimized**: Portrait-first design with responsive layout
 - **Version Display**: Current version shown at bottom of app
 
@@ -151,7 +152,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📝 Version
 
-Current version: **v1.3.0** (2025-12-02)
+Current version: **v1.4.0** (2025-12-02)
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 

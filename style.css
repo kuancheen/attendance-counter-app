@@ -430,23 +430,63 @@ body {
     opacity: 0.6;
 }
 
+/* Global Stats */
+.global-stats {
+    text-align: center;
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.global-count-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.global-count-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Visitor Badge */
+.visitor-badge {
+    margin-top: var(--spacing-sm);
+    display: flex;
+    justify-content: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.visitor-badge:hover {
+    opacity: 1;
+}
+
 /* Toast Notification */
 .toast {
     position: fixed;
     bottom: 2rem;
     left: 50%;
-    transform: translateX(-50%) translateY(150%);
+    transform: translateX(-50%) translateY(100px);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-lg);
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    padding: 1rem 1.5rem;
-    background: var(--success);
-    color: white;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
-    font-weight: 600;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 0.5rem;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
 }
 
 .toast.show {
