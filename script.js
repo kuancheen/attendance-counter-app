@@ -315,7 +315,8 @@ function attachEventListeners() {
 
         ageButtons.forEach(btn => {
             btn.addEventListener('touchstart', (e) => {
-                e.preventDefault(); // Prevent click event from firing
+                // Prevent default to stop mouse emulation (double firing)
+                if (e.cancelable) e.preventDefault();
                 changeGroup(btn.dataset.group);
             }, { passive: false });
         });
