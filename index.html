@@ -22,23 +22,21 @@
             <p class="subtitle">Track attendance by age group</p>
         </header>
 
-        <!-- Age Group Selector -->
-        <div class="age-group-selector">
-            <div class="selector-label">Age Group</div>
-            <div class="selector-buttons">
+        <!-- Main Card: Merged Age Selector & Counter -->
+        <div class="counter-card">
+            <!-- Age Group Tabs -->
+            <div class="age-group-tabs">
                 <button class="age-btn active" data-group="Kids">Kids</button>
                 <button class="age-btn" data-group="Teens">Teens</button>
                 <button class="age-btn" data-group="Campus">Campus</button>
                 <button class="age-btn" data-group="YWAs">YWAs</button>
                 <button class="age-btn" data-group="Family">Family</button>
             </div>
-        </div>
 
-        <!-- Counter Display -->
-        <div class="counter-display">
-            <div class="counter-label">Current Count</div>
-            <div class="counter-value" id="counterValue">0</div>
-            <div class="counter-group" id="counterGroup">Kids</div>
+            <!-- Counter Display -->
+            <div class="counter-display">
+                <div class="counter-value" id="counterValue">0</div>
+            </div>
         </div>
 
         <!-- Control Buttons -->
@@ -63,22 +61,21 @@
             <div class="summary-header">
                 <h2>Summary</h2>
                 <div class="summary-actions">
-                    <button class="btn-reset" id="btnReset" aria-label="Reset all counts">
+                    <button class="btn-reset icon-only" id="btnReset" title="Reset all counts"
+                        aria-label="Reset all counts">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 6h18"></path>
-                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V4a2 2 0 0 1 2-2h4c1 0 2 1 2 2v2"></path>
                         </svg>
-                        Reset
                     </button>
-                    <button class="btn-copy" id="btnCopy" aria-label="Copy to clipboard">
+                    <button class="btn-copy icon-only" id="btnCopy" title="Copy to clipboard"
+                        aria-label="Copy to clipboard">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                         </svg>
-                        Copy
                     </button>
                 </div>
             </div>
@@ -88,21 +85,37 @@
             <div class="summary-total" id="summaryTotal">Total: 0</div>
         </div>
 
-        <!-- Global Stats -->
-        <div class="global-stats">
-            <div class="global-count-label">Global Impact</div>
-            <div class="global-count-value" id="globalCount">Loading...</div>
+        <!-- Footer Info -->
+        <div class="footer-info">
+            <div class="version">v1.5.0</div>
+            <div class="separator">•</div>
+            <div class="global-stats-subtle">
+                Global: <span id="globalCount">...</span>
+            </div>
         </div>
-
-        <!-- Version Display -->
-        <div class="version">v1.4.0</div>
 
         <!-- Visitor Badge -->
         <div class="visitor-badge">
             <a href="https://hits.sh/kuancheen.github.io/attendance-counter-app/">
                 <img alt="Hits"
-                    src="https://hits.sh/kuancheen.github.io/attendance-counter-app.svg?view=today-total&style=for-the-badge&label=Views&extraCount=0&color=6366f1&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJzdmctaWNvbiIgc3R5bGU9IndpZHRoOiAxZW07IGhlaWdodDogMWVtO3ZlcnRpY2FsLWFsaWduOiBtaWRkbGU7ZmlsbDojZmZmZmZmO292ZXJmbG93OiBoaWRkZW47IiB2aWV3Qm94PSIwIDAgMTAyNCAxMDI0IiB2ZXJzaW9uPSIxLjEiPjxwYXRoIGQ9Ik01MTIgMzg0YTEyOCAxMjggMCAwIDAtMTI4IDEyOCAxMjggMTI4IDAgMCAwIDEyOCAxMjggMTI4IDEyOCAwIDAgMCAxMjgtMTI4IDEyOCAxMjggMCAwIDAtMTI4LTEyOG0wIDM0MS4zMzMzMzNhMjEzLjMzMzMzMyAyMTMuMzMzMzMzIDAgMCAxLTIxMy4zMzMzMzMtMjEzLjMzMzMzMyAyMTMuMzMzMzMzIDIxMy4zMzMzMzMgMCAwIDEgMjEzLjMzMzMzMy0yMTMuMzMzMzMzIDIxMy4zMzMzMzMgMjEzLjMzMzMzMyAwIDAgMSAyMTMuMzMzMzMzIDIxMy4zMzMzMzMgMjEzLjMzMzMzMyAyMTMuMzMzMzMzIDAgMCAxLTIxMy4zMzMzMzMgMjEzLjMzMzMzM20wLTUzMy4zMzMzMzNDMzk4LjY2NjY2NyAxOTIgMTE2LjQ4IDMyNC42OTMzMzMgNDIuNjY2NjY3IDUxMmM3My44MTMzMzMgMTg3LjMwNjY2NyAyNTYgMzIwIDQ2OS4zMzMzMzMgMzIwczM5NS41Mi0xMzIuNjkzMzMzIDQ2OS4zMzMzMzMtMzIwYy03My44MTMzMzMtMTg3LjMwNjY2Ny0yNTYtMzIwLTQ2OS4zMzMzMzMtMzIweiIgZmlsbD0iIi8%2BPC9zdmc%2B" />
+                    src="https://hits.sh/kuancheen.github.io/attendance-counter-app.svg?view=today-total&style=for-the-badge&label=Views&extraCount=0&color=6366f1&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJzdmctaWNvbiIgc3R5bGU9IndpZHRoOiAxZW07IGhlaWdodDogMWVtO3ZlcnRpY2FsLWFsaWduOiBtaWRkbGU7ZmlsbDojZmZmZmZmO292ZXJmbG93OiBoaWRkZW47IiB2aWV3Qm94PSIwIDAgMTAyNCAxMDI0IiB2ZXJzaW9uPSIxLjEiPjxwYXRoIGQ9IkM1MTIgMzg0YTEyOCAxMjggMCAwIDAtMTI4IDEyOCAxMjggMTI4IDAgMCAwIDEyOCAxMjggMTI4IDEyOCAwIDAgMCAxMjgtMTI4IDEyOCAxMjggMCAwIDAtMTI4LTEyOG0wIDM0MS4zMzMzMzNhMjEzLjMzMzMzMyAyMTMuMzMzMzMzIDAgMCAxLTIxMy4zMzMzMzMtMjEzLjMzMzMzMyAyMTMuMzMzMzMzIDIxMy4zMzMzMzMgMCAwIDEgMjEzLjMzMzMzMy0yMTMuMzMzMzMzIDIxMy4zMzMzMzMgMjEzLjMzMzMzMyAwIDAgMSAyMTMuMzMzMzMzIDIxMy4zMzMzMzMgMjEzLjMzMzMzMyAyMTMuMzMzMzMzIDAgMCAxLTIxMy4zMzMzMzMgMjEzLjMzMzMzM20wLTUzMy4zMzMzMzNDMzk4LjY2NjY2NyAxOTIgMTE2LjQ4IDMyNC42OTMzMzMgNDIuNjY2NjY3IDUxMmM3My44MTMzMzMgMTg3LjMwNjY2NyAyNTYgMzIwIDQ2OS4zMzMzMzMgMzIwczM5NS41Mi0xMzIuNjkzMzMzIDQ2OS4zMzMzMzMtMzIwYy03My44MTMzMzMtMTg3LjMwNjY2Ny0yNTYtMzIwLTQ2OS4zMzMzMzMtMzIweiIgZmlsbD0iIi8%2BPC9zdmc%2B" />
             </a>
+        </div>
+
+        <!-- Custom Confirmation Modal -->
+        <div class="modal-overlay" id="confirmModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3>Reset Counts?</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to reset all counts to zero? This cannot be undone.</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-cancel" id="btnModalCancel">Cancel</button>
+                    <button class="btn-confirm" id="btnModalConfirm">Reset</button>
+                </div>
+            </div>
         </div>
 
         <!-- Toast Notification -->

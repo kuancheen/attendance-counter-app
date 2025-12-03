@@ -12,7 +12,6 @@ const state = {
 
 // DOM elements
 const counterValue = document.getElementById('counterValue');
-const counterGroup = document.getElementById('counterGroup');
 const btnIncrement = document.getElementById('btnIncrement');
 const btnDecrement = document.getElementById('btnDecrement');
 const btnCopy = document.getElementById('btnCopy');
@@ -22,6 +21,11 @@ const summaryTotal = document.getElementById('summaryTotal');
 const toast = document.getElementById('toast');
 const ageButtons = document.querySelectorAll('.age-btn');
 const globalCountDisplay = document.getElementById('globalCount');
+
+// Modal elements
+const confirmModal = document.getElementById('confirmModal');
+const btnModalCancel = document.getElementById('btnModalCancel');
+const btnModalConfirm = document.getElementById('btnModalConfirm');
 
 // Global Counter Config
 const GLOBAL_COUNTER_API = 'https://api.counterapi.dev/v1';
@@ -111,12 +115,13 @@ function saveToLocalStorage() {
 // Update counter display
 function updateDisplay() {
     counterValue.textContent = state.counts[state.currentGroup];
-    counterGroup.textContent = state.currentGroup;
 
     // Update active age button
     ageButtons.forEach(btn => {
         if (btn.dataset.group === state.currentGroup) {
             btn.classList.add('active');
+            // Scroll active button into view if needed
+            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         } else {
             btn.classList.remove('active');
         }
@@ -208,16 +213,23 @@ function changeGroup(group) {
     saveToLocalStorage();
 }
 
-// Reset all counts
-function resetAllCounts() {
-    if (confirm('Are you sure you want to reset all counts to zero?')) {
-        Object.keys(state.counts).forEach(key => {
-            state.counts[key] = 0;
-        });
-        updateDisplay();
-        renderSummary();
-        saveToLocalStorage();
-    }
+// Modal Logic
+function openResetModal() {
+    confirmModal.classList.add('show');
+}
+
+function closeResetModal() {
+    confirmModal.classList.remove('show');
+}
+
+function confirmReset() {
+    Object.keys(state.counts).forEach(key => {
+        state.counts[key] = 0;
+    });
+    updateDisplay();
+    renderSummary();
+    saveToLocalStorage();
+    closeResetModal();
 }
 
 // Format date as "D MMMM YYYY" (e.g., "2 December 2025")
@@ -298,7 +310,7 @@ function attachEventListeners() {
 
         btnReset.addEventListener('touchstart', (e) => {
             e.preventDefault(); // Prevent click event from firing
-            resetAllCounts();
+            openResetModal();
         }, { passive: false });
 
         ageButtons.forEach(btn => {
@@ -307,19 +319,42 @@ function attachEventListeners() {
                 changeGroup(btn.dataset.group);
             }, { passive: false });
         });
+
+        // Modal buttons (touch)
+        btnModalCancel.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            closeResetModal();
+        }, { passive: false });
+
+        btnModalConfirm.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            confirmReset();
+        }, { passive: false });
+
     } else {
         // Desktop: use click events
         btnIncrement.addEventListener('click', increment);
         btnDecrement.addEventListener('click', decrement);
         btnCopy.addEventListener('click', copyToClipboard);
-        btnReset.addEventListener('click', resetAllCounts);
+        btnReset.addEventListener('click', openResetModal);
 
         ageButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 changeGroup(btn.dataset.group);
             });
         });
+
+        // Modal buttons (click)
+        btnModalCancel.addEventListener('click', closeResetModal);
+        btnModalConfirm.addEventListener('click', confirmReset);
     }
+
+    // Close modal when clicking outside
+    confirmModal.addEventListener('click', (e) => {
+        if (e.target === confirmModal) {
+            closeResetModal();
+        }
+    });
 
     // Keyboard shortcuts (desktop only)
     document.addEventListener('keydown', (e) => {
@@ -330,6 +365,8 @@ function attachEventListeners() {
         } else if (e.key === 'c' && (e.ctrlKey || e.metaKey)) {
             e.preventDefault();
             copyToClipboard();
+        } else if (e.key === 'Escape') {
+            closeResetModal();
         }
     });
 }
