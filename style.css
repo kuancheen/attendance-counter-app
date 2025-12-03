@@ -107,6 +107,9 @@ body {
     /* Hide scrollbar Firefox */
     -ms-overflow-style: none;
     /* Hide scrollbar IE/Edge */
+    -webkit-overflow-scrolling: touch;
+    /* Enable momentum scrolling on iOS */
+    scroll-behavior: smooth;
 }
 
 .age-group-tabs::-webkit-scrollbar {
@@ -138,7 +141,8 @@ body {
 
 .age-btn:hover {
     color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(99, 102, 241, 0.2);
+    /* Purple with opacity */
 }
 
 .age-btn.active {
