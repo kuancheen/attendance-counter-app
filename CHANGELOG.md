@@ -5,6 +5,13 @@ All notable changes to the Attendance Counter Web App will be documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1] - 2025-12-03
+
+### Fixed
+- **Age Group Selection**: Fixed visual "double selection" bug by removing default tap highlight
+- **Responsiveness**: Improved touch event handling for age group buttons on mobile
+- **UI Polish**: Updated active tab highlight color to primary purple for better visibility
+
 ## [1.5.0] - 2025-12-03
 
 ### Changed
