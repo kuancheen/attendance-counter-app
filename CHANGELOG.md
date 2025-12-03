@@ -5,6 +5,16 @@ All notable changes to the Attendance Counter Web App will be documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.6] - 2025-12-03
+
+### Changed
+- **Copyright**: Moved copyright notice to HTML comment (hidden from UI)
+- **Cleanup**: Removed dynamic copyright year JavaScript logic
+- **Cleanup**: Removed copyright CSS styles
+
+### Added
+- **Workflow**: Created release checklist workflow with copyright year maintenance steps
+
 ## [1.5.5] - 2025-12-03
 
 ### Changed
