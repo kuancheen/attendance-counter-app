@@ -146,8 +146,8 @@ body {
 }
 
 .age-btn.active {
-    background: var(--primary);
-    /* Use primary purple color */
+    background: var(--accent-primary);
+    /* Use defined purple color */
     color: white;
     box-shadow: var(--shadow-sm);
 }
