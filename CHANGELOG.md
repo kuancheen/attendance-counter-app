@@ -5,6 +5,16 @@ All notable changes to the Attendance Counter Web App will be documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.1] - 2025-12-19
+
+### Changed
+- **Documentation**: Updated `README.md` with standard project badges (Version, Status, SemVer, License).
+- **Documentation**: Enhanced `index.html` comment header with Author and Description.
+
+### Added
+- **Workflows**: Synchronized local `.agent/workflows/version-update.md` with latest global template.
+- **CI/CD**: Added `.github/workflows/static.yml` for automated GitHub Pages deployment.
+
 ## [1.6.0] - 2025-12-11
 
 ### Added
