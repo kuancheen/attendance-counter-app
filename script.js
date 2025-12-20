@@ -38,7 +38,9 @@ function init() {
     updateDisplay();
     renderSummary();
     attachEventListeners();
-    fetchGlobalCount(); // Fetch initial global count
+    if (globalCountDisplay) {
+        fetchGlobalCount(); // Fetch initial global count
+    }
 
     // Lock orientation to portrait (best effort)
     if (screen.orientation && screen.orientation.lock) {
@@ -59,7 +61,9 @@ async function fetchGlobalCount() {
         }
     } catch (error) {
         console.error('Error fetching global count:', error);
-        globalCountDisplay.textContent = 'Unavailable';
+        if (globalCountDisplay) {
+            globalCountDisplay.textContent = 'Unavailable';
+        }
     }
 }
 
@@ -77,6 +81,7 @@ function incrementGlobalCount() {
 
 // Update Global Count Display with animation
 function updateGlobalCountDisplay(count) {
+    if (!globalCountDisplay) return;
     const formattedCount = new Intl.NumberFormat().format(count);
     globalCountDisplay.textContent = formattedCount;
 
