@@ -390,6 +390,11 @@ body {
 }
 
 .global-stats-subtle {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
     font-variant-numeric: tabular-nums;
 }
 
