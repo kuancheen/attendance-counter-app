@@ -1,6 +1,6 @@
 # Attendance Counter Web App
 
-![Version](https://img.shields.io/badge/version-v1.6.4-blue)
+![Version](https://img.shields.io/badge/version-v1.12.0-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue)
 ![Status](https://img.shields.io/badge/status-active-success)
@@ -23,6 +23,7 @@ A beautiful, mobile-first web application for tracking attendance across differe
 - **Summary View**: Real-time display of all counts with total
 - **Reset Functionality**: One-click reset with custom confirmation modal
 - **Clipboard Export**: Copy attendance data with formatted date header
+- **Individual Group Copying**: Quickly copy specific age group counts (e.g., "Kids: 5") from the summary card
 - **Global Tracking**: Real-time global usage counter and visitor badge
 - **Documentation Viewer**: Footer links for README and CHANGELOG using `md-viewer`
 - **Mobile-Optimized**: Portrait-first design with responsive layout
@@ -157,7 +158,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📝 Version
 
-Current version: **v1.6.4** (2025-12-20)
+Current version: **v1.12.0** (2025-12-29)
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 

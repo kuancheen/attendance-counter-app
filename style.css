@@ -333,15 +333,52 @@ body {
 .summary-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0.5rem 0;
     color: var(--text-secondary);
     font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-item-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 .summary-item-value {
     font-weight: 600;
     color: var(--text-primary);
     font-variant-numeric: tabular-nums;
+}
+
+.btn-copy-individual {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.btn-copy-individual:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.btn-copy-individual:active {
+    transform: scale(0.9);
 }
 
 .summary-total {

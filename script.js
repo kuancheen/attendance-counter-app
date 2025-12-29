@@ -145,9 +145,30 @@ function renderSummary() {
         item.className = 'summary-item';
         item.innerHTML = `
             <span class="summary-item-label">${group}</span>
-            <span class="summary-item-value">${count}</span>
+            <div class="summary-item-content">
+                <span class="summary-item-value">${count}</span>
+                <button class="btn-copy-individual" data-group="${group}" title="Copy ${group} count" aria-label="Copy ${group} count">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </div>
         `;
         summaryList.appendChild(item);
+    });
+
+    // Add event listeners to individual copy buttons
+    const individualCopyBtns = summaryList.querySelectorAll('.btn-copy-individual');
+    individualCopyBtns.forEach(btn => {
+        const handler = (e) => {
+            if (e.type === 'touchstart') e.preventDefault();
+            copyIndividualToClipboard(btn.dataset.group);
+        };
+
+        btn.addEventListener('click', handler);
+        btn.addEventListener('touchstart', handler, { passive: false });
     });
 
     summaryTotal.textContent = `Total: ${total}`;
@@ -282,8 +303,35 @@ async function copyToClipboard() {
     }
 }
 
+// Copy individual group to clipboard
+async function copyIndividualToClipboard(group) {
+    const count = state.counts[group];
+    const text = `${group}: ${count}`;
+
+    try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+        } else {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+        showToast(`Copied ${group} count!`);
+    } catch (err) {
+        console.error('Failed to copy individual:', err);
+    }
+}
+
 // Show toast notification
-function showToast() {
+function showToast(message = 'Copied to clipboard!') {
+    const toastText = toast.querySelector('span');
+    if (toastText) toastText.textContent = message;
+
     toast.classList.add('show');
     setTimeout(() => {
         toast.classList.remove('show');

@@ -5,6 +5,11 @@ All notable changes to the Attendance Counter Web App will be documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.12.0] - 2025-12-29
+
+### Added
+- **Summary Card**: Added individual copy buttons for each age group, allowing users to copy specific counts (e.g., "Kids: 5") directly.
+
 ## [1.6.4] - 2025-12-20
 
 ### Changed
