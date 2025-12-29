@@ -1,6 +1,6 @@
 # Attendance Counter Web App
 
-![Version](https://img.shields.io/badge/version-v1.12.0-blue)
+![Version](https://img.shields.io/badge/version-v1.7.0-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue)
 ![Status](https://img.shields.io/badge/status-active-success)
@@ -158,7 +158,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📝 Version
 
-Current version: **v1.12.0** (2025-12-29)
+Current version: **v1.7.0** (2025-12-29)
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 
