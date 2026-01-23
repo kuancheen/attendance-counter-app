@@ -5,6 +5,11 @@ All notable changes to the Attendance Counter Web App will be documented in this
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.2] - 2026-01-23
+
+### Added
+- **User Experience**: Integrated haptic feedback (subtle vibration) for the increment button on supported mobile devices to provide tactile confirmation.
+
 ## [1.7.1] - 2026-01-23
 
 ### Changed

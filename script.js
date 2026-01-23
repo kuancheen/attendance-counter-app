@@ -201,6 +201,11 @@ function debouncedSave() {
 function increment() {
     state.counts[state.currentGroup]++;
 
+    // Tactile feedback on mobile
+    if ('vibrate' in navigator) {
+        navigator.vibrate(15);
+    }
+
     // Trigger pulse animation (non-blocking)
     counterValue.classList.remove('pulse');
     // Force reflow to restart animation

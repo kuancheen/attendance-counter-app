@@ -1,6 +1,6 @@
 # Attendance Counter Web App
 
-![Version](https://img.shields.io/badge/version-v1.7.1-blue)
+![Version](https://img.shields.io/badge/version-v1.7.2-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue)
 ![Status](https://img.shields.io/badge/status-active-success)
@@ -27,6 +27,7 @@ A beautiful, mobile-first web application for tracking attendance across differe
 - **Global Tracking**: Real-time global usage counter and visitor badge
 - **Documentation Viewer**: Footer links for README and CHANGELOG using `md-viewer`
 - **Mobile-Optimized**: Portrait-first design with responsive layout
+- **Haptic Feedback**: Subtle vibration on mobile for tactile counting confirmation
 - **Version Display**: Current version shown at bottom of app
 
 ### Design Features
@@ -158,7 +159,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📝 Version
 
-Current version: **v1.7.1** (2026-01-23)
+Current version: **v1.7.2** (2026-01-23)
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 
