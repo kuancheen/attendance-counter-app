@@ -6,7 +6,7 @@ const state = {
         'Teens': 0,
         'Campus': 0,
         'YWAs': 0,
-        'Family': 0
+        'Adult': 0
     }
 };
 
@@ -100,7 +100,17 @@ function loadFromLocalStorage() {
     if (saved) {
         try {
             const data = JSON.parse(saved);
-            state.counts = data.counts || state.counts;
+
+            // Migration: Port 'Family' counts to 'Adult' if they exist
+            if (data.counts && data.counts.Family !== undefined) {
+                data.counts.Adult = (data.counts.Adult || 0) + data.counts.Family;
+                delete data.counts.Family;
+            }
+            if (data.currentGroup === 'Family') {
+                data.currentGroup = 'Adult';
+            }
+
+            state.counts = { ...state.counts, ...data.counts };
             state.currentGroup = data.currentGroup || state.currentGroup;
         } catch (e) {
             console.error('Error loading from localStorage:', e);

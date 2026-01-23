@@ -1,6 +1,6 @@
 # Attendance Counter Web App
 
-![Version](https://img.shields.io/badge/version-v1.7.0-blue)
+![Version](https://img.shields.io/badge/version-v1.7.1-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Semantic Versioning](https://img.shields.io/badge/semver-2.0.0-blue)
 ![Status](https://img.shields.io/badge/status-active-success)
@@ -16,7 +16,7 @@ A beautiful, mobile-first web application for tracking attendance across differe
 ## ✨ Features
 
 ### Core Functionality
-- **5 Age Groups**: Kids, Teens, Campus, YWAs, and Family
+- **5 Age Groups**: Kids, Teens, Campus, YWAs, and Adult
 - **Unified Interface**: Merged age selector and counter for better ergonomics
 - **Clicker Interface**: Large increment button (120px) and smaller decrement button (80px)
 - **Memory Persistence**: Counts automatically saved to localStorage across sessions
@@ -158,7 +158,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📝 Version
 
-Current version: **v1.7.0** (2025-12-29)
+Current version: **v1.7.1** (2026-01-23)
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 
